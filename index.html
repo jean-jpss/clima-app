@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClimaAgora — Previsão do Tempo</title>
+  <meta name="description" content="Consulte o clima atual e a previsão dos próximos dias para qualquer cidade do mundo, com dados em tempo real da API Open-Meteo.">
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="preconnect" href="https://api.open-meteo.com">
+  <link rel="preconnect" href="https://geocoding-api.open-meteo.com">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="logo">
+        <span aria-hidden="true">🌤️</span> ClimaAgora
+      </p>
+      <button id="theme-toggle" type="button" class="icon-btn" aria-pressed="false" aria-label="Alternar para tema escuro">
+        <span aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo-principal" class="container">
+    <section class="search-card" aria-labelledby="busca-titulo">
+      <h1 id="busca-titulo">Como está o tempo hoje?</h1>
+      <p class="subtitle">Busque uma cidade ou use sua localização atual para ver a previsão.</p>
+
+      <form id="search-form" role="search" class="search-form" novalidate>
+        <div class="field">
+          <label for="city-input" class="visually-hidden">Nome da cidade</label>
+          <input
+            id="city-input"
+            name="city"
+            type="text"
+            inputmode="search"
+            placeholder="Ex.: Fortaleza, São Paulo, Lisboa..."
+            autocomplete="off"
+            required
+          >
+        </div>
+        <button type="submit" class="primary-btn">
+          <span aria-hidden="true">🔍</span> Buscar
+        </button>
+      </form>
+
+      <button id="geo-btn" type="button" class="secondary-btn">
+        <span aria-hidden="true">📍</span> Usar minha localização
+      </button>
+    </section>
+
+    <p id="status-msg" role="status" aria-live="polite" class="status-msg"></p>
+
+    <section id="current-weather" class="current-weather" hidden aria-labelledby="cidade-atual">
+      <div class="current-top">
+        <div>
+          <h2 id="cidade-atual" class="city-name"></h2>
+          <p id="current-date" class="current-date"></p>
+        </div>
+        <div class="current-icon" id="current-icon" aria-hidden="true"></div>
+      </div>
+
+      <div class="current-main">
+        <p class="temp-now"><span id="temp-now"></span><span class="deg">°C</span></p>
+        <p id="condition-text" class="condition-text"></p>
+      </div>
+
+      <dl class="current-details">
+        <div class="detail-item">
+          <dt>Sensação</dt>
+          <dd id="feels-like">--</dd>
+        </div>
+        <div class="detail-item">
+          <dt>Umidade</dt>
+          <dd id="humidity">--</dd>
+        </div>
+        <div class="detail-item">
+          <dt>Vento</dt>
+          <dd id="wind">--</dd>
+        </div>
+        <div class="detail-item">
+          <dt>Chuva</dt>
+          <dd id="precip">--</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="forecast" class="forecast" hidden aria-labelledby="forecast-titulo">
+      <h2 id="forecast-titulo">Próximos dias</h2>
+      <ul id="forecast-list" class="forecast-list"></ul>
+    </section>
+
+    <section id="empty-state" class="empty-state">
+      <p><span aria-hidden="true">☁️</span> Nenhuma cidade selecionada ainda. Faça uma busca acima para começar.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Dados meteorológicos por
+        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>.
+        Projeto acadêmico desenvolvido com HTML, CSS e JavaScript puros.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
